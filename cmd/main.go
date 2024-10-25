@@ -24,7 +24,7 @@ func createAccount(context *gin.Context) {
 	var newAccount model.Account
 
 	// ShouldBindJSON takes the data from the client's request and checks if
-	// it is in the correct JSON format, if it is then it will return nil.
+	// it is in the correct JSON format, if it is then it will return nil and fill the newData.
 	// we use &(address of) because the ShouldBindJSON fills the newData with the
 	// Client's request
 	if err := context.ShouldBindJSON(&newAccount); err != nil {
