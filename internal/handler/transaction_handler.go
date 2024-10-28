@@ -15,7 +15,7 @@ type TransactionHandler struct {
 
 func (h *TransactionHandler) CreateTransaction(c *gin.Context) {
 	var transaction model.Transaction
-	if err := c.ShouldBindJSON(transaction); err != nil {
+	if err := c.ShouldBindJSON(&transaction); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -31,7 +31,7 @@ func (h *TransactionHandler) CreateTransaction(c *gin.Context) {
 }
 
 func (h *TransactionHandler) GetTransactionByAccountID(c *gin.Context) {
-	accountID, err := strconv.ParseInt(c.Param("id"), 10, 64)
+	accountID, err := strconv.ParseInt(c.Param("account_id"), 10, 64)
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid Account ID"})
